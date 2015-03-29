@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.5
+
+- Adds `trimCode` option for removing leading and trailing whitespace
+
+
 ## 0.0.4
 
 - Only prepends scripts with `"use strict";` statements if not already present
