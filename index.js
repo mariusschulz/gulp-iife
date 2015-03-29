@@ -1,5 +1,5 @@
-var Stream = require("stream");
 var _ = require("lodash");
+var Stream = require("stream");
 
 function gulpIife(userOptions) {
     "use strict";
