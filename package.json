@@ -25,5 +25,8 @@
     "email": "marius.schulz@me.com",
     "url": "https://blog.mariusschulz.com/"
   },
-  "homepage": "https://github.com/mariusschulz/gulp-iife"
+  "homepage": "https://github.com/mariusschulz/gulp-iife",
+  "dependencies": {
+    "lodash": "^3.6.0"
+  }
 }

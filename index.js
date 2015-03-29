@@ -1,13 +1,17 @@
 var Stream = require("stream");
+var _ = require("lodash");
 
-function gulpIife(options) {
+function gulpIife(userOptions) {
     "use strict";
+
+    var defaultOptions = { useStrict: true };
+    var options = _.merge({}, defaultOptions, userOptions);
 
     var stream = new Stream.Transform({ objectMode: true });
 
     stream._transform = function(file, encoding, callback) {
         var contents = String(file.contents);
-        var wrappedContents = surroundWithIife(contents, options || {});
+        var wrappedContents = surroundWithIife(contents, options);
 
         file.contents = Buffer(wrappedContents);
         
