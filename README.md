@@ -1,6 +1,6 @@
 # gulp-iife
 
-A Gulp plugin for wrapping JavaScript code within an immediately invoked function expression (or IIFE).
+A Gulp plugin for wrapping JavaScript code within immediately invoked function expressions (IIFEs).
 
 
 ## Install
@@ -23,14 +23,14 @@ gulp.task("default", function() {
 });
 ```
 
-Input:
+Input file:
 
 ```js
 var greeting = "Hello, World!";
 console.log(greeting);
 ```
 
-Output:
+Output file:
 
 ```js
 (function() {
@@ -59,7 +59,7 @@ gulp.task("default", function() {
 });
 ```
 
-Input:
+Input file:
 
 ```js
 var greeting = "Hello, World!";
@@ -67,7 +67,7 @@ console.log(greeting);
 
 ```
 
-Output:
+Output file:
 
 ```js
 (function() {
