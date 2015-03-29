@@ -25,7 +25,7 @@ function surroundWithIife(code, options) {
     var leadingCode = "(function() {\n",
         trailingCode = "\n}());\n";
 
-    if (options.useStrict) {
+    if (options.useStrict && !code.match(/^\s*(['"])use strict\1;/)) {
         leadingCode += '"use strict";\n\n';
     }
 
