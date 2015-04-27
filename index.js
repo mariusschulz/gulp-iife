@@ -4,7 +4,7 @@ var Stream = require("stream");
 function gulpIife(userOptions) {
     "use strict";
 
-    var defaultOptions = { useStrict: true, trimCode: true };
+    var defaultOptions = { useStrict: true, trimCode: true, prependSemicolon: true };
     var options = _.merge({}, defaultOptions, userOptions);
 
     var stream = new Stream.Transform({ objectMode: true });
@@ -25,6 +25,10 @@ function surroundWithIife(code, options) {
     var leadingCode = "(function() {\n",
         trimmedCode = options.trimCode ? code.trim() : code,
         trailingCode = "\n}());\n";
+
+    if (options.prependSemicolon) {
+       leadingCode = ";" + leadingCode;
+    }
 
     if (options.useStrict && !code.match(/^\s*(['"])use strict\1;/)) {
         leadingCode += '"use strict";\n\n';
