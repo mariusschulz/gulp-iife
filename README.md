@@ -33,7 +33,7 @@ console.log(greeting);
 Output file:
 
 ```js
-(function() {
+;(function() {
 "use strict";
 
 var greeting = "Hello, World!";
@@ -47,6 +47,7 @@ You can configure the following options:
 
 - `useStrict`: a boolean indicating whether to prepend a `"use strict";` directive (`true` by default)
 - `trimCode`: a boolean indicating whether to remove leading & trailing whitespace from the code (`true` by default)
+- `prependSemicolon`: a boolean indicating whether to prepend a semicolon as statement terminator before the IIFE (`true` by default)
 
 ```js
 var gulp = require("gulp");
@@ -54,7 +55,11 @@ var iife = require("gulp-iife");
 
 gulp.task("default", function() {
 	return gulp.src("src/input.js")
-		.pipe(iife({ useStrict: false, trimCode: false }))
+		.pipe(iife({
+            useStrict: false,
+            trimCode: false,
+            prependSemicolon: false
+        }))
 		.pipe(gulp.dest("dist"));
 });
 ```
