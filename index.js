@@ -14,7 +14,7 @@ function gulpIife(userOptions) {
         var wrappedContents = surroundWithIife(contents, options);
 
         file.contents = Buffer(wrappedContents);
-        
+
         callback(null, file);
     };
 
