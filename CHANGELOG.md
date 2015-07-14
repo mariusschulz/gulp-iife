@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.7
+
+- Adds `bindThis` option for bind global to this on the scope of the iife
+
 ## 0.0.5
 
 - Adds `trimCode` option for removing leading and trailing whitespace
