@@ -90,3 +90,8 @@ console.log(greeting);
 In the spirit of Gulp plugins, *gulp-iife* does one thing and one thing only: adding wrapping IIFEs.
 
 If you'd like the resulting code to be neatly indented or otherwise formatted, pipe the output to another Gulp plugin which formats the JavaScript code, such as [gulp-esformatter](https://github.com/sindresorhus/gulp-esformatter).
+
+
+## Changelog
+
+The changelog can be found in [CHANGELOG.md](https://github.com/mariusschulz/gulp-iife/blob/master/CHANGELOG.md).
