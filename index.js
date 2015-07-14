@@ -22,7 +22,7 @@ function gulpIife(userOptions) {
 }
 
 function surroundWithIife(code, options) {
-    var bindThis = options.bindThis ? '.bind(this)' : '',
+    var bindThis = options.bindThis ? ".bind(this)" : "",
         leadingCode = "(function() {\n",
         trimmedCode = options.trimCode ? code.trim() : code,
         trailingCode = "\n}" + bindThis + "());\n";
