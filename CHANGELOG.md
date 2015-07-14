@@ -5,6 +5,11 @@
 - Adds `bindThis` option for binding the global object to `this` with the scope of the IIFE
 
 
+## 0.0.6
+
+- Adds `prependSemicolon` option for prepending semicolons as potential statement terminators
+
+
 ## 0.0.5
 
 - Adds `trimCode` option for removing leading and trailing whitespace
