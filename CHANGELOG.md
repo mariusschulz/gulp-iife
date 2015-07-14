@@ -2,7 +2,8 @@
 
 ## 0.0.7
 
-- Adds `bindThis` option for bind global to this on the scope of the iife
+- Adds `bindThis` option for binding the global object to `this` with the scope of the IIFE
+
 
 ## 0.0.5
 
