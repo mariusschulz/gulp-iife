@@ -45,10 +45,18 @@ console.log(greeting);
 
 You can configure the following options:
 
-- `useStrict`: a boolean indicating whether to prepend a `"use strict";` directive (`true` by default)
-- `trimCode`: a boolean indicating whether to remove leading & trailing whitespace from the code (`true` by default)
-- `prependSemicolon`: a boolean indicating whether to prepend a semicolon as statement terminator before the IIFE (`true` by default)
-- `bindThis`: a boolean indicating whether to prepend `.bind(this)` to the IIFE (`false` by default)
+- `useStrict`
+    - a boolean indicating whether to prepend a `"use strict";` directive
+    - `true` by default
+- `trimCode`
+    - a boolean indicating whether to remove leading & trailing whitespace from the code
+    - `true` by default
+- `prependSemicolon`
+    - a boolean indicating whether to prepend a semicolon as statement terminator before the IIFE
+    - `true` by default
+- `bindThis`
+    - a boolean indicating whether to prepend `.bind(this)` to the IIFE
+    - `false` by default
 
 ```js
 var gulp = require("gulp");
