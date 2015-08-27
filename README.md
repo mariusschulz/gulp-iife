@@ -57,6 +57,12 @@ You can configure the following options:
 - `bindThis`
     - A boolean indicating whether to append `.bind(this)` to the IIFE. Setting this value to `true` makes the surrounding global object available to the function, which is usually not the case in strict mode.
     - `false` by default
+- `args`
+	- An array of arguments to be passed into the IIFE. You can optionally modify the corresponding parameters through `params`.
+	- ` ` by default
+- `params`
+	- An array of parameters to be used inside the IIFE. This is optional when using `args`, otherwise its variables will be used instead.
+	- ` ` by default
 
 ```js
 var gulp = require("gulp");
@@ -67,7 +73,9 @@ gulp.task("default", function() {
 		.pipe(iife({
             useStrict: false,
             trimCode: false,
-            prependSemicolon: false
+            prependSemicolon: false,
+			params: ['$', 'window', 'document', 'undefined'],
+			args: ['jQuery', 'window', 'document']
         }))
 		.pipe(gulp.dest("dist"));
 });
@@ -84,11 +92,11 @@ console.log(greeting);
 Output file:
 
 ```js
-(function() {
+(function($, window, document, undefined) {
 var greeting = "Hello, World!";
 console.log(greeting);
 
-}());
+}(jQuery, window, document));
 
 ```
 

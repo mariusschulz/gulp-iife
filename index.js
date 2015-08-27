@@ -22,10 +22,12 @@ function gulpIife(userOptions) {
 }
 
 function surroundWithIife(code, options) {
-    var bindThis = options.bindThis ? ".bind(this)" : "",
-        leadingCode = "(function() {\n",
+    var args = options.args ? options.args.join(", ") : "",
+        params = options.params ? options.params.join(", ") : (args !== "" ? args : ""),
+        bindThis = options.bindThis ? ".bind(this)" : "",
+        leadingCode = "(function(" + params + ") {\n",
         trimmedCode = options.trimCode ? code.trim() : code,
-        trailingCode = "\n}" + bindThis + "());\n";
+        trailingCode = "\n}" + bindThis + "(" + args + "));\n";
 
     if (options.prependSemicolon) {
        leadingCode = ";" + leadingCode;
