@@ -1,8 +1,19 @@
+var _ = require("lodash");
+
 module.exports = {
     surround: surround
 };
 
-function surround(code, options) {
+var defaultOptions = {
+    bindThis: false,
+    prependSemicolon: true,
+    useStrict: true,
+    trimCode: true
+};
+
+function surround(code, userOptions) {
+    var options = _.merge({}, defaultOptions, userOptions);
+
     var bindThis = options.bindThis ? ".bind(this)" : "",
         leadingCode = "(function() {\n",
         trimmedCode = options.trimCode ? code.trim() : code,
