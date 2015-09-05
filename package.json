@@ -6,9 +6,9 @@
   "main": "lib/index.js",
   "files": ["lib/"],
   "scripts": {
-    "prepublish": "npm test && gulp scripts",
-    "test": "mocha",
-    "test-watch": "mocha --watch"
+    "prepublish": "npm test && gulp transpile",
+    "test": "mocha test/transpiled",
+    "test-watch": "mocha test/transpiled --watch"
   },
   "repository": {
     "type": "git",
