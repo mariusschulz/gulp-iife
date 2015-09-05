@@ -1,17 +1,29 @@
 import gulp from "gulp";
 import babel from "gulp-babel";
 
-const jsFilesGlob = "src/**/*.js";
-const libDir = "lib/";
+const srcScriptsGlob = "src/**/*.js";
+const testScriptsGlob = "test/src/**/*.js";
 
-gulp.task("scripts", function() {
-    return gulp.src(jsFilesGlob)
+const srcTargetDir = "lib/";
+const testTargetDir = "test/transpiled/";
+
+gulp.task("transpile-src", function() {
+    return gulp.src(srcScriptsGlob)
         .pipe(babel())
-        .pipe(gulp.dest(libDir));
+        .pipe(gulp.dest(srcTargetDir));
 });
 
-gulp.task("scripts-watch", function() {
-    gulp.watch(jsFilesGlob, ["scripts"]);
+gulp.task("transpile-test", function() {
+    return gulp.src(testScriptsGlob)
+        .pipe(babel())
+        .pipe(gulp.dest(testTargetDir));
 });
 
-gulp.task("default", ["scripts", "scripts-watch"]);
+gulp.task("watch-transpile", function() {
+    gulp.watch(srcScriptsGlob, ["transpile-src"]);
+    gulp.watch(testScriptsGlob, ["transpile-test"]);
+});
+
+gulp.task("transpile", ["transpile-src", "transpile-test"]);
+
+gulp.task("default", ["transpile", "watch-transpile"]);
