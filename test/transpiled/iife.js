@@ -4,7 +4,7 @@ var assert = require("chai").assert;
 var iife = require("../../lib/iife");
 
 describe("IIFE", function () {
-    var code = "var x = 1;";
+    var code = "var x = 1;\n\n\n";
 
     describe("#surround()", function () {
         it("should be a function", function () {

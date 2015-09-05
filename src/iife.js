@@ -15,7 +15,7 @@ function surround(code, userOptions) {
     let lines = [
         "(function() {",
         ...useStrictLines,
-        code,
+        code.trim(),
         "}());",
         ""
     ];
