@@ -2,7 +2,7 @@ var assert = require("chai").assert;
 var iife = require("../../lib/iife");
 
 describe("IIFE", function() {
-    var code = "var x = 1;\n\n\n";
+    var code = "var x = 1;\n\n";
 
     describe("#surround()", function() {
         it("should be a function", function() {
@@ -31,6 +31,19 @@ var x = 1;
 `;
 
             assert.equal(iife.surround(code, { useStrict: false }), expected);
+        });
+
+        it("should not trim the code when \"trimCode\" is false", function() {
+            const expected = `(function() {
+"use strict";
+
+var x = 1;
+
+
+}());
+`;
+
+            assert.equal(iife.surround(code, { trimCode: false }), expected);
         });
     });
 });

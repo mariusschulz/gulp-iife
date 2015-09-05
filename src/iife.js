@@ -3,7 +3,8 @@ import _ from "lodash";
 export default { surround };
 
 let defaultOptions = {
-    useStrict: true
+    useStrict: true,
+    trimCode: true
 };
 
 function surround(code, userOptions) {
@@ -12,10 +13,12 @@ function surround(code, userOptions) {
         ? ["\"use strict\";", ""]
         : [];
 
+    let trimmedCode = options.trimCode ? code.trim() : code;
+
     let lines = [
         "(function() {",
         ...useStrictLines,
-        code.trim(),
+        trimmedCode,
         "}());",
         ""
     ];
