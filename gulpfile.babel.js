@@ -1,5 +1,5 @@
-let gulp = require("gulp");
-let babel = require("gulp-babel");
+import gulp from "gulp";
+import babel from "gulp-babel";
 
 const jsFilesGlob = "src/**/*.js";
 const libDir = "lib/";
