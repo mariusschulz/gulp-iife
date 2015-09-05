@@ -111,5 +111,36 @@ var x = 1;
 
             assert.equal(iife.surround(code, { bindThis: false }), expected);
         });
+
+        it("should add the arguments and parameters specified in \"args\" and \"params\"", function() {
+            const expected = `;(function($, undefined) {
+"use strict";
+
+var x = 1;
+}(jQuery));
+`;
+
+            let options = {
+                args: ["jQuery"],
+                params: ["$", "undefined"]
+            };
+
+            assert.equal(iife.surround(code, options), expected);
+        });
+
+        it("should use \"params\" values for \"args\" if \"args\" is missing", function() {
+            const expected = `;(function(window) {
+"use strict";
+
+var x = 1;
+}(window));
+`;
+
+            let options = {
+                params: ["window"]
+            };
+
+            assert.equal(iife.surround(code, options), expected);
+        });
     });
 });

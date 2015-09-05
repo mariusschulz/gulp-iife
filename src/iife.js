@@ -3,6 +3,8 @@ import _ from "lodash";
 export default { surround };
 
 let defaultOptions = {
+    args: undefined,
+    params: [],
     prependSemicolon: true,
     useStrict: true,
     trimCode: true
@@ -16,13 +18,25 @@ function surround(code, userOptions) {
     const prependedSemicolon = options.prependSemicolon ? ";" : "";
     const bindThis = options.bindThis ? ".bind(this)" : "";
 
+    const { args, params } = getArgsAndParams(options);
+
     let lines = [
-        prependedSemicolon + "(function() {",
+        prependedSemicolon + `(function(${params}) {`,
         ...useStrictLines,
         trimmedCode,
-        `}${bindThis}());`,
+        `}${bindThis}(${args}));`,
         ""
     ];
 
     return lines.join("\n");
+}
+
+function getArgsAndParams(options) {
+    const params = options.params;
+    const args = options.args || params;
+
+    return {
+        args: args.join(", "),
+        params: params.join(", ")
+    };
 }

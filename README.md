@@ -57,6 +57,11 @@ You can configure the following options:
 - `bindThis`
     - A boolean indicating whether to append `.bind(this)` to the IIFE. Setting this value to `true` makes the surrounding global object available to the function, which is usually not the case in strict mode.
     - `false` by default
+- `params`
+    - An array of parameter names to be accepted by the IIFE. If the `args` option is not specified, the arguments of the function call will use the same identifiers.
+- `args`
+    - An array of arguments to be passed into the IIFE.
+
 
 ```js
 var gulp = require("gulp");
