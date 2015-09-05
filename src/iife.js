@@ -10,10 +10,8 @@ let defaultOptions = {
 
 function surround(code, userOptions) {
     let options = _.merge({}, defaultOptions, userOptions);
-    let useStrictLines = options.useStrict
-        ? ["\"use strict\";", ""]
-        : [];
 
+    let useStrictLines = options.useStrict ? ["\"use strict\";", ""] : [];
     const trimmedCode = options.trimCode ? code.trim() : code;
     const prependedSemicolon = options.prependSemicolon ? ";" : "";
     const bindThis = options.bindThis ? ".bind(this)" : "";
