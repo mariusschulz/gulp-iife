@@ -24,6 +24,17 @@ var x = 1;
             assert.equal(iife.surround(code), expected);
         });
 
+        it("should add a \"use strict\" directive when \"useStrict\" is true", function() {
+            const expected = `(function() {
+"use strict";
+
+var x = 1;
+}());
+`;
+
+            assert.equal(iife.surround(code, { useStrict: true }), expected);
+        });
+
         it("should not add a \"use strict\" directive when \"useStrict\" is false", function() {
             const expected = `(function() {
 var x = 1;
@@ -31,6 +42,17 @@ var x = 1;
 `;
 
             assert.equal(iife.surround(code, { useStrict: false }), expected);
+        });
+
+        it("should trim the code when \"trimCode\" is true", function() {
+            const expected = `(function() {
+"use strict";
+
+var x = 1;
+}());
+`;
+
+            assert.equal(iife.surround(code, { trimCode: true }), expected);
         });
 
         it("should not trim the code when \"trimCode\" is false", function() {
