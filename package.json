@@ -3,8 +3,10 @@
   "version": "0.0.7",
   "description": "Wraps JavaScript code within an immediately invoked function expression.",
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": ["lib/"],
   "scripts": {
+    "prepublish": "npm test && gulp scripts",
     "test": "mocha"
   },
   "repository": {
@@ -31,7 +33,11 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.23",
     "chai": "^3.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
     "mocha": "^2.3.0"
   }
 }
