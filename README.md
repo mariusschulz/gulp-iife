@@ -66,7 +66,6 @@ gulp.task("default", function() {
 	return gulp.src("src/input.js")
 		.pipe(iife({
             useStrict: false,
-            trimCode: false,
             prependSemicolon: false
         }))
 		.pipe(gulp.dest("dist"));
@@ -78,7 +77,6 @@ Input file:
 ```js
 var greeting = "Hello, World!";
 console.log(greeting);
-
 ```
 
 Output file:
@@ -87,9 +85,7 @@ Output file:
 (function() {
 var greeting = "Hello, World!";
 console.log(greeting);
-
 }());
-
 ```
 
 
