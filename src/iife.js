@@ -7,5 +7,5 @@ function surround(code, userOptions) {
 }
 
 function surroundWithIife(code) {
-    return `(function() {\n${code}\n}());\n`;
+    return `(function() {\n"use strict";\n\n${code}\n}());\n`;
 }

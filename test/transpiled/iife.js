@@ -16,7 +16,7 @@ describe("IIFE", function () {
         });
 
         it("should apply the correct defaults", function () {
-            var expected = "(function() {\nvar x = 1;\n}());\n";
+            var expected = "(function() {\n\"use strict\";\n\nvar x = 1;\n}());\n";
 
             assert.equal(iife.surround(code), expected);
         });

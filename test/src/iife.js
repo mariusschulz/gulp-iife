@@ -15,6 +15,8 @@ describe("IIFE", function() {
 
         it("should apply the correct defaults", function() {
             const expected = `(function() {
+"use strict";
+
 var x = 1;
 }());
 `;
