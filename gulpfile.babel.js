@@ -1,10 +1,12 @@
 let gulp = require("gulp");
+let babel = require("gulp-babel");
 
 const jsFilesGlob = "src/**/*.js";
 const libDir = "lib/";
 
 gulp.task("scripts", function() {
     return gulp.src(jsFilesGlob)
+        .pipe(babel())
         .pipe(gulp.dest(libDir));
 });
 
