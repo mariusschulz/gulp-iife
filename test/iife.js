@@ -1,5 +1,5 @@
 var assert = require("chai").assert;
-var iife = require("../src/iife");
+var iife = require("../lib/iife");
 
 describe("IIFE", function() {
     describe("#surround()", function() {
