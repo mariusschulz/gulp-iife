@@ -16,12 +16,13 @@ function surround(code, userOptions) {
 
     const trimmedCode = options.trimCode ? code.trim() : code;
     const prependedSemicolon = options.prependSemicolon ? ";" : "";
+    const bindThis = options.bindThis ? ".bind(this)" : "";
 
     let lines = [
         prependedSemicolon + "(function() {",
         ...useStrictLines,
         trimmedCode,
-        "}());",
+        `}${bindThis}());`,
         ""
     ];
 

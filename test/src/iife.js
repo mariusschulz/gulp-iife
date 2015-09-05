@@ -89,5 +89,27 @@ var x = 1;
 
             assert.equal(iife.surround(code, { prependSemicolon: false }), expected);
         });
+
+        it("should add \".bind(this)\" when \"bindThis\" is true", function() {
+            const expected = `;(function() {
+"use strict";
+
+var x = 1;
+}.bind(this)());
+`;
+
+            assert.equal(iife.surround(code, { bindThis: true }), expected);
+        });
+
+        it("should not add \".bind(this)\" when \"bindThis\" is false", function() {
+            const expected = `;(function() {
+"use strict";
+
+var x = 1;
+}());
+`;
+
+            assert.equal(iife.surround(code, { bindThis: false }), expected);
+        });
     });
 });
