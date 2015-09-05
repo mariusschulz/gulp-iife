@@ -20,5 +20,11 @@ describe("IIFE", function () {
 
             assert.equal(iife.surround(code), expected);
         });
+
+        it("should not add a \"use strict\" directive when \"useStrict\" is false", function () {
+            var expected = "(function() {\nvar x = 1;\n}());\n";
+
+            assert.equal(iife.surround(code, { useStrict: false }), expected);
+        });
     });
 });

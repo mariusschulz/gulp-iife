@@ -23,5 +23,14 @@ var x = 1;
 
             assert.equal(iife.surround(code), expected);
         });
+
+        it("should not add a \"use strict\" directive when \"useStrict\" is false", function() {
+            const expected = `(function() {
+var x = 1;
+}());
+`;
+
+            assert.equal(iife.surround(code, { useStrict: false }), expected);
+        });
     });
 });
