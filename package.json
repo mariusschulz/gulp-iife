@@ -1,6 +1,6 @@
 {
   "name": "gulp-iife",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "Wraps JavaScript code within an immediately invoked function expression.",
   "license": "MIT",
   "main": "lib/index.js",
