@@ -21,7 +21,7 @@ function surround(code, userOptions) {
     const { args, params } = getArgsAndParams(options);
 
     let lines = [
-        prependedSemicolon + `(function(${params}) {`,
+        `${prependedSemicolon}(function(${params}) {`,
         ...useStrictLines,
         trimmedCode,
         `}${bindThis}(${args}));`,
