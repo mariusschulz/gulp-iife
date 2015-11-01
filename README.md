@@ -94,7 +94,7 @@ console.log(greeting);
 
 ### `useStrict`
 
-A boolean indicating whether to prepend a `"use strict";` directive.
+A boolean indicating whether to prepend a `"use strict";` directive to the function body.
 
 - **Default**: `true`
 
