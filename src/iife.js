@@ -4,7 +4,7 @@ export default { surround };
 
 let defaultOptions = {
     args: undefined,
-    params: [],
+    params: undefined,
     prependSemicolon: true,
     useStrict: true,
     trimCode: true
@@ -32,8 +32,8 @@ function surround(code, userOptions) {
 }
 
 function getArgsAndParams(options) {
-    const params = options.params;
-    const args = options.args || params;
+    const params = options.params || options.args || [];
+    const args = options.args || options.params || [];
 
     return {
         args: args.join(", "),

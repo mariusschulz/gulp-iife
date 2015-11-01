@@ -142,5 +142,20 @@ var x = 1;
 
             assert.equal(iife.surround(code, options), expected);
         });
+
+        it("should use \"args\" values for \"params\" if \"params\" is missing", function() {
+            const expected = `;(function(window) {
+"use strict";
+
+var x = 1;
+}(window));
+`;
+
+            let options = {
+                args: ["window"]
+            };
+
+            assert.equal(iife.surround(code, options), expected);
+        });
     });
 });
