@@ -1,6 +1,8 @@
-import _ from "lodash";
+var _ = require("lodash");
 
-export default { surround };
+module.exports = {
+    surround
+};
 
 let defaultOptions = {
     args: undefined,

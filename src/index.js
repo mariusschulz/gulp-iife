@@ -1,7 +1,7 @@
-import through from "through2";
-import iife from "./iife";
+var through = require("through2");
+var iife = require("./iife");
 
-export default function gulpIife(userOptions) {
+module.exports = function gulpIife(userOptions) {
     return through.obj(function(file, encoding, callback) {
         const contents = String(file.contents);
         const wrappedContents = iife.surround(contents, userOptions);
