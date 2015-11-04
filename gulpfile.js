@@ -1,21 +1,25 @@
-import gulp from "gulp";
-import babel from "gulp-babel";
+var gulp = require("gulp");
+var babel = require("gulp-babel");
 
-const srcScriptsGlob = "src/**/*.js";
-const testScriptsGlob = "test/src/**/*.js";
+var srcScriptsGlob = "src/**/*.js";
+var testScriptsGlob = "test/src/**/*.js";
 
-const srcTargetDir = "lib/";
-const testTargetDir = "test/transpiled/";
+var srcTargetDir = "lib/";
+var testTargetDir = "test/transpiled/";
+
+var babelOptions = {
+    presets: ["es2015"]
+};
 
 gulp.task("transpile-src", function() {
     return gulp.src(srcScriptsGlob)
-        .pipe(babel())
+        .pipe(babel(babelOptions))
         .pipe(gulp.dest(srcTargetDir));
 });
 
 gulp.task("transpile-test", function() {
     return gulp.src(testScriptsGlob)
-        .pipe(babel())
+        .pipe(babel(babelOptions))
         .pipe(gulp.dest(testTargetDir));
 });
 
