@@ -17,9 +17,9 @@ var gulp = require("gulp");
 var iife = require("gulp-iife");
 
 gulp.task("default", function() {
-	return gulp.src("src/input.js")
-		.pipe(iife())
-		.pipe(gulp.dest("dist"));
+    return gulp.src("src/input.js")
+        .pipe(iife())
+        .pipe(gulp.dest("dist"));
 });
 ```
 
