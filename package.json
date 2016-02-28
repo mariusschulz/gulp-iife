@@ -4,7 +4,9 @@
   "description": "Wraps JavaScript code within an immediately invoked function expression.",
   "license": "MIT",
   "main": "lib/index.js",
-  "files": ["lib/"],
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "prepublish": "npm test && gulp transpile",
     "test": "mocha test/transpiled",
@@ -31,7 +33,9 @@
   "homepage": "https://github.com/mariusschulz/gulp-iife",
   "dependencies": {
     "lodash": "^3.6.0",
-    "through2": "^2.0.0"
+    "source-map": "^0.5.3",
+    "through2": "^2.0.0",
+    "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
     "babel": "^6.0.15",
