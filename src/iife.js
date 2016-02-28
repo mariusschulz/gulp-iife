@@ -1,5 +1,5 @@
 var _ = require("lodash");
-var SourceMapGenerator = require('source-map').SourceMapGenerator;
+var SourceMapGenerator = require("source-map").SourceMapGenerator;
 
 module.exports = {
     surround
@@ -38,10 +38,10 @@ function surround(code, userOptions) {
     };
 
     if (generateSourceMap) {
-        let smg = new SourceMapGenerator({file: options.fileName});
+        let smg = new SourceMapGenerator({ file: options.fileName });
 
         let linesOffset = 1;
-        linesOffset += (options.useStrict ? 2 : 0);
+        linesOffset += options.useStrict ? 2 : 0;
         // TODO add trimmed lines
 
         let codeLines = (trimmedCode.match(/\n/g) || []).length + 1;

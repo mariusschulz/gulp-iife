@@ -1,5 +1,5 @@
 var through = require("through2");
-var applySourceMap = require('vinyl-sourcemaps-apply');
+var applySourceMap = require("vinyl-sourcemaps-apply");
 var iife = require("./iife");
 
 module.exports = function gulpIife(userOptions) {
