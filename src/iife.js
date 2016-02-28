@@ -11,17 +11,16 @@ let defaultOptions = {
     prependSemicolon: true,
     useStrict: true,
     trimCode: true,
-    generateSourceMap: false
+    generateSourceMap: true
 };
 
-function surround(code, userOptions) {
+function surround(code, userOptions, sourceMapOptions) {
     let options = _.merge({}, defaultOptions, userOptions);
 
     let useStrictLines = options.useStrict ? ["\"use strict\";", ""] : [];
     const trimmedCode = options.trimCode ? code.trim() : code;
     const prependedSemicolon = options.prependSemicolon ? ";" : "";
     const bindThis = options.bindThis ? ".bind(this)" : "";
-    const generateSourceMap = options.generateSourceMap;
 
     const { args, params } = getArgsAndParams(options);
 
@@ -37,8 +36,8 @@ function surround(code, userOptions) {
         code: lines.join("\n")
     };
 
-    if (generateSourceMap) {
-        let smg = new SourceMapGenerator({ file: options.fileName });
+    if (sourceMapOptions && options.generateSourceMap !== false) {
+        let smg = new SourceMapGenerator({ file: sourceMapOptions.fileName });
 
         let linesOffset = 1;
         linesOffset += options.useStrict ? 2 : 0;
@@ -48,7 +47,7 @@ function surround(code, userOptions) {
 
         for (let i = 1; i <= codeLines; i++) {
             smg.addMapping({
-                source: options.fileName,
+                source: sourceMapOptions.fileName,
                 original: {
                     line: i,
                     column: 0

@@ -26,11 +26,11 @@ var x = 1;
         });
 
         it("should generate correct sourcemaps for default options", function() {
-            var fileName = "main.js";
-            var options = {generateSourceMap: true, fileName: fileName};
-            var result = iife.surround(code, options);
+            var fileName = "whatever.js";
+            var options = {};
+            var result = iife.surround(code, options, { fileName });
 
-            var expectedMap = new SourceMapGenerator({file: fileName});
+            var expectedMap = new SourceMapGenerator({ file: fileName });
 
             expectedMap.addMapping({
                 source: fileName,
