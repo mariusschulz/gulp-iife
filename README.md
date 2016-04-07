@@ -134,6 +134,25 @@ An array of argument names to be passed into the IIFE. If the `params` option is
 - **Default**: none
 
 
+## Source Maps
+
+*gulp-iife* supports source maps, which means you can use it like this:
+
+```js
+var gulp = require("gulp");
+var iife = require("../gulp-iife/lib");
+var sourcemaps = require("gulp-sourcemaps");
+
+gulp.task("default", function() {
+    return gulp.src("src/input.js")
+        .pipe(sourcemaps.init())
+        .pipe(iife({ }))
+        .pipe(sourcemaps.write("./"))
+        .pipe(gulp.dest("./built"));
+});
+```
+
+
 ## Changelog
 
 The changelog can be found in [CHANGELOG.md](https://github.com/mariusschulz/gulp-iife/blob/master/CHANGELOG.md).
