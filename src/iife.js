@@ -37,7 +37,7 @@ function surround(code, userOptions, sourceMapOptions) {
     };
 
     if (sourceMapOptions && options.generateSourceMap !== false) {
-        result.sourceMap = generateSourceMap(trimmedCode, options, sourceMapOptions);
+        result.sourceMap = generateSourceMap(code, options, sourceMapOptions);
     }
 
     return result;
@@ -53,18 +53,33 @@ function getArgsAndParams(options) {
     };
 }
 
-function generateSourceMap(code, options, sourceMapOptions) {
+function generateSourceMap(originalCode, options, sourceMapOptions) {
+    // We don't care about trailing lines for the mapping
+    let code = originalCode.trimRight();
+
     let sourceMapGenerator = new SourceMapGenerator({
         file: sourceMapOptions.fileName
     });
 
+
+    // We have at least one line of positive offset because of the start of the IIFE
     let linesOffset = 1;
+
+    // Then we have optionally two more lines because of the "use strict" and the empty
+    // line after that
     linesOffset += options.useStrict ? 2 : 0;
-    // TODO add trimmed lines
 
-    let codeLines = (code.match(/\n/g) || []).length + 1;
+    // Then we have negative lines for the leading empty lines that are trimmed
+    let leadingEmptyLines = ((code.match(/^\s+/) || [""])[0].match(/\n/g) || []).length;
+    linesOffset -= options.trimCode ? leadingEmptyLines : 0;
 
-    for (let i = 1; i <= codeLines; i++) {
+
+    // We add sourcemaps only for the non-empty lines.
+    // So, we start the loop in the first non-empty line
+    // (The trailing empty lines are already trimmed)
+    let codeLines = (code.trimLeft().match(/\n/g) || []).length + 1;
+
+    for (let i = 1 + leadingEmptyLines; i <= codeLines + leadingEmptyLines; i++) {
         sourceMapGenerator.addMapping({
             source: sourceMapOptions.fileName,
             original: {
