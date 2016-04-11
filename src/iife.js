@@ -61,22 +61,20 @@ function generateSourceMap(originalCode, options, sourceMapOptions) {
         file: sourceMapOptions.fileName
     });
 
-
     // We have at least one line of positive offset because of the start of the IIFE
     let linesOffset = 1;
 
-    // Then we have optionally two more lines because of the "use strict" and the empty
-    // line after that
+    // Then we have optionally two more lines because of the "use strict"
+    // and the empty line after that
     linesOffset += options.useStrict ? 2 : 0;
 
     // Then we have negative lines for the leading empty lines that are trimmed
     let leadingEmptyLines = ((code.match(/^\s+/) || [""])[0].match(/\n/g) || []).length;
     linesOffset -= options.trimCode ? leadingEmptyLines : 0;
 
-
     // We add sourcemaps only for the non-empty lines.
-    // So, we start the loop in the first non-empty line
-    // (The trailing empty lines are already trimmed)
+    // So, we start the loop in the first non-empty line.
+    // (The trailing empty lines are already trimmed.)
     let codeLines = (code.trimLeft().match(/\n/g) || []).length + 1;
 
     for (let i = 1 + leadingEmptyLines; i <= codeLines + leadingEmptyLines; i++) {
