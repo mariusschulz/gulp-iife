@@ -78,6 +78,29 @@ var x = 1;
             assert.equal(iife.surround(code, { trimCode: true }).code, expected);
         });
 
+        it("should generate correct sourcemaps when \"trimCode\" is true", function() {
+            var codeWithLeadingSpace = "\n\n" + code;
+            var fileName = "whatever.js";
+            var options = { trimCode: true };
+            var result = iife.surround(codeWithLeadingSpace, options, { fileName });
+
+            var expectedMap = new SourceMapGenerator({ file: fileName });
+
+            expectedMap.addMapping({
+                source: fileName,
+                original: {
+                    line: 3,
+                    column: 0
+                },
+                generated: {
+                    line: 4,
+                    column: 0
+                }
+            });
+
+            assert.equal(result.sourceMap, expectedMap.toString());
+        });
+
         it("should not trim the code when \"trimCode\" is false", function() {
             const expected = `;(function() {
 "use strict";
@@ -89,6 +112,29 @@ var x = 1;
 `;
 
             assert.equal(iife.surround(code, { trimCode: false }).code, expected);
+        });
+
+        it("should generate correct sourcemaps when \"trimCode\" is false", function() {
+            var codeWithLeadingSpace = "\n\n" + code;
+            var fileName = "whatever.js";
+            var options = { trimCode: false };
+            var result = iife.surround(codeWithLeadingSpace, options, { fileName });
+
+            var expectedMap = new SourceMapGenerator({ file: fileName });
+
+            expectedMap.addMapping({
+                source: fileName,
+                original: {
+                    line: 3,
+                    column: 0
+                },
+                generated: {
+                    line: 6,
+                    column: 0
+                }
+            });
+
+            assert.equal(result.sourceMap, expectedMap.toString());
         });
 
         it("should prepend a semicolon when \"prependSemicolon\" is true", function() {
