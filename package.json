@@ -23,7 +23,10 @@
     "js",
     "iife",
     "siaf",
-    "function"
+    "immediately",
+    "invoked",
+    "function",
+    "expression"
   ],
   "author": {
     "name": "Marius Schulz",
