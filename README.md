@@ -41,6 +41,53 @@ console.log(greeting);
 }());
 ```
 
+### Multiple files
+```js
+var gulp = require("gulp");
+var iife = require("gulp-iife");
+
+gulp.task("default", function() {
+    return gulp.src([
+        "src/input.js",
+        "src/multiple.js"
+    ])
+    .pipe(iife())
+    .pipe(gulp.dest("dist"));
+});
+```
+
+Input files:
+
+```js
+// src/input.js
+var greeting = "Hello, World!";
+console.log(greeting);
+
+// src/multiple.js
+var greeting = "Hey!";
+console.log(greeting);
+```
+
+Output files:
+
+```js
+// src/input.js
+;(function() {
+"use strict";
+
+var greeting = "Hello, World!";
+console.log(greeting);
+}());
+
+// src/multiple.js
+;(function() {
+"use strict";
+
+var greeting = "Hey!";
+console.log(greeting);
+}());
+```
+
 
 ## Options
 
