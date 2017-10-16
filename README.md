@@ -52,6 +52,7 @@ You can configure the following options:
 - [`bindThis`](#bindthis)
 - [`params`](#params)
 - [`args`](#args)
+- [`detectIife`](#detectIife)
 
 Here's an example specifying all available options:
 
@@ -132,6 +133,13 @@ An array of parameter names to be accepted by the IIFE. If the `args` option is 
 An array of argument names to be passed into the IIFE. If the `params` option is not specified, the parameters of the function will have the same names as the arguments passed.
 
 - **Default**: none
+
+
+### `detectIife`
+
+A boolean indicating whether to ignore files that already have an IIFE.
+
+- **Default**: false
 
 
 ## Source Maps
