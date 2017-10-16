@@ -1,5 +1,6 @@
 var _ = require("lodash");
 var SourceMapGenerator = require("source-map").SourceMapGenerator;
+var { parse } = require('acorn');
 
 module.exports = {
     surround
@@ -11,11 +12,18 @@ let defaultOptions = {
     prependSemicolon: true,
     useStrict: true,
     trimCode: true,
-    generateSourceMap: true
+    generateSourceMap: true,
+    detectIife: false
 };
 
 function surround(code, userOptions, sourceMapOptions) {
     let options = _.merge({}, defaultOptions, userOptions);
+
+    if (options.detectIife && hasIife(code)) {
+        return {
+            code: code
+        }
+    }
 
     let useStrictLines = options.useStrict ? ["\"use strict\";", ""] : [];
     const trimmedCode = options.trimCode ? code.trim() : code;
@@ -92,4 +100,38 @@ function generateSourceMap(originalCode, options, sourceMapOptions) {
     }
 
     return sourceMapGenerator.toString();
+}
+
+function hasIife(code) {
+    const ast = parse(code);
+
+    // Ignore empty statements. This handles the prepended semicolons
+    const statements = ast.body.filter(x => x.type !== 'EmptyStatement');
+
+    // The AST of an IIFE has a single non-empty statement
+    if (statements.length !== 1) {
+        return false;
+    }
+
+    const statement = statements[0];
+
+    if (statement.type !== 'ExpressionStatement') {
+        return false;
+    }
+
+    const expression = statement.expression;
+
+    // That single statement is a call expression
+    if (expression.type !== 'CallExpression') {
+        return false;
+    }
+
+    const callee = expression.callee;
+
+    // That call is of a function expression (and not, say, a MemberExpression)
+    if (callee.type !== 'FunctionExpression') {
+        return false;
+    }
+
+    return true;
 }

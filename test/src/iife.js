@@ -226,5 +226,71 @@ var x = 1;
 
             assert.equal(iife.surround(code, options).code, expected);
         });
+
+        it("should do nothing if the file has an iife and \"detectIife\" is true", function() {
+            const expected = `;(function() {
+"use strict";
+
+var x = 1;
+}());
+`;
+            let options = {
+                detectIife: true
+            };
+
+            assert.equal(iife.surround(expected, options).code, expected);
+        });
+
+        it("should work if the file doesn't have an iife and \"detectIife\" is true", function () {
+            const expected = `;(function() {
+"use strict";
+
+var x = 1;
+}());
+`;
+            let options = {
+                detectIife: true
+            };
+
+            assert.equal(iife.surround(code, options).code, expected);
+        });
+
+        it("should add another iife if the file has an iife and \"detectIife\" is false", function () {
+            const code = `;(function() {
+"use strict";
+
+var x = 1;
+}());
+`;
+            const expected = `;(function() {
+"use strict";
+
+;(function() {
+"use strict";
+
+var x = 1;
+}());
+}());
+`;
+            let options = {
+                detectIife: false
+            };
+
+            assert.equal(iife.surround(code, options).code, expected);
+        });
+
+        it("should work iife if the file doesn't have an iife and \"detectIife\" is false", function () {
+            const expected = `;(function() {
+"use strict";
+
+var x = 1;
+}());
+`;
+            let options = {
+                detectIife: false
+            };
+
+            assert.equal(iife.surround(code, options).code, expected);
+        });
     });
 });
