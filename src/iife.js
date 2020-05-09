@@ -1,9 +1,5 @@
 var SourceMapGenerator = require("source-map").SourceMapGenerator;
 
-module.exports = {
-  surround,
-};
-
 let defaultOptions = {
   args: undefined,
   params: undefined,
@@ -96,3 +92,7 @@ function generateSourceMap(originalCode, options, sourceMapOptions) {
 
   return sourceMapGenerator.toString();
 }
+
+module.exports = {
+  surround,
+};
