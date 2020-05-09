@@ -10,7 +10,7 @@ module.exports = function gulpIife(userOptions: any) {
       : null;
 
     const result = iife.surround(contents, userOptions, sourceMapOptions);
-    file.contents = new Buffer(result.code);
+    file.contents = Buffer.from(result.code);
 
     if (file.sourceMap) {
       applySourceMap(file, result.sourceMap);
