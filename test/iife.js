@@ -1,5 +1,5 @@
 var assert = require("chai").assert;
-var iife = require("../../lib/iife");
+var iife = require("../lib/iife");
 var SourceMapGenerator = require("source-map").SourceMapGenerator;
 
 describe("IIFE", function () {
