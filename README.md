@@ -17,9 +17,9 @@ var gulp = require("gulp");
 var iife = require("gulp-iife");
 
 gulp.task("default", function() {
-    return gulp.src("src/input.js")
-        .pipe(iife())
-        .pipe(gulp.dest("dist"));
+  return gulp.src("src/input.js")
+    .pipe(iife())
+    .pipe(gulp.dest("dist"));
 });
 ```
 
@@ -60,16 +60,16 @@ var gulp = require("gulp");
 var iife = require("gulp-iife");
 
 gulp.task("default", function() {
-    return gulp.src("src/input.js")
-        .pipe(iife({
-            useStrict: true,
-            trimCode: true,
-            prependSemicolon: false,
-            bindThis: false,
-            params: ["window", "document", "$", "undefined"],
-            args: ["window", "document", "jQuery"]
-        }))
-        .pipe(gulp.dest("dist"));
+  return gulp.src("src/input.js")
+    .pipe(iife({
+      useStrict: true,
+      trimCode: true,
+      prependSemicolon: false,
+      bindThis: false,
+      params: ["window", "document", "$", "undefined"],
+      args: ["window", "document", "jQuery"]
+    }))
+    .pipe(gulp.dest("dist"));
 });
 ```
 
@@ -144,11 +144,11 @@ var iife = require("../gulp-iife/lib");
 var sourcemaps = require("gulp-sourcemaps");
 
 gulp.task("default", function() {
-    return gulp.src("src/input.js")
-        .pipe(sourcemaps.init())
-        .pipe(iife({ }))
-        .pipe(sourcemaps.write("./"))
-        .pipe(gulp.dest("./built"));
+  return gulp.src("src/input.js")
+    .pipe(sourcemaps.init())
+    .pipe(iife({ }))
+    .pipe(sourcemaps.write("./"))
+    .pipe(gulp.dest("./built"));
 });
 ```
 
