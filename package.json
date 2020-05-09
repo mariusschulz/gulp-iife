@@ -8,7 +8,9 @@
     "lib/"
   ],
   "scripts": {
-    "prepublish": "npm test && gulp transpile",
+    "prepublish": "npm test && npm run build",
+    "build": "cp -R ./src/ ./lib",
+    "format": "prettier './*.js' 'src/**/*.js' 'test/**/*.js' --write",
     "test": "mocha test/transpiled",
     "test-watch": "mocha test/transpiled --watch"
   },
@@ -46,6 +48,7 @@
     "chai": "^3.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.0.0",
-    "mocha": "^2.3.0"
+    "mocha": "^2.3.0",
+    "prettier": "^2.0.5"
   }
 }
