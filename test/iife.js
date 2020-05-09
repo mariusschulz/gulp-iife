@@ -1,9 +1,9 @@
-var assert = require("chai").assert;
-var iife = require("../lib/iife");
-var SourceMapGenerator = require("source-map").SourceMapGenerator;
+const assert = require("chai").assert;
+const iife = require("../lib/iife");
+const { SourceMapGenerator } = require("source-map");
 
 describe("IIFE", function () {
-  var code = "var x = 1;\n\n";
+  const code = "var x = 1;\n\n";
 
   describe("#surround()", function () {
     it("should be a function", function () {
@@ -26,11 +26,11 @@ var x = 1;
     });
 
     it("should generate correct sourcemaps for default options", function () {
-      var fileName = "whatever.js";
-      var options = {};
-      var result = iife.surround(code, options, { fileName });
+      const fileName = "whatever.js";
+      const options = {};
+      const result = iife.surround(code, options, { fileName });
 
-      var expectedMap = new SourceMapGenerator({ file: fileName });
+      const expectedMap = new SourceMapGenerator({ file: fileName });
 
       expectedMap.addMapping({
         source: fileName,
@@ -79,12 +79,12 @@ var x = 1;
     });
 
     it('should generate correct sourcemaps when "trimCode" is true', function () {
-      var codeWithLeadingSpace = "\n\n" + code;
-      var fileName = "whatever.js";
-      var options = { trimCode: true };
-      var result = iife.surround(codeWithLeadingSpace, options, { fileName });
+      const codeWithLeadingSpace = "\n\n" + code;
+      const fileName = "whatever.js";
+      const options = { trimCode: true };
+      const result = iife.surround(codeWithLeadingSpace, options, { fileName });
 
-      var expectedMap = new SourceMapGenerator({ file: fileName });
+      const expectedMap = new SourceMapGenerator({ file: fileName });
 
       expectedMap.addMapping({
         source: fileName,
@@ -115,12 +115,12 @@ var x = 1;
     });
 
     it('should generate correct sourcemaps when "trimCode" is false', function () {
-      var codeWithLeadingSpace = "\n\n" + code;
-      var fileName = "whatever.js";
-      var options = { trimCode: false };
-      var result = iife.surround(codeWithLeadingSpace, options, { fileName });
+      const codeWithLeadingSpace = "\n\n" + code;
+      const fileName = "whatever.js";
+      const options = { trimCode: false };
+      const result = iife.surround(codeWithLeadingSpace, options, { fileName });
 
-      var expectedMap = new SourceMapGenerator({ file: fileName });
+      const expectedMap = new SourceMapGenerator({ file: fileName });
 
       expectedMap.addMapping({
         source: fileName,
@@ -195,7 +195,7 @@ var x = 1;
 }(jQuery));
 `;
 
-      let options = {
+      const options = {
         args: ["jQuery"],
         params: ["$", "undefined"],
       };
@@ -211,7 +211,7 @@ var x = 1;
 }(window));
 `;
 
-      let options = {
+      const options = {
         params: ["window"],
       };
 
@@ -226,7 +226,7 @@ var x = 1;
 }(window));
 `;
 
-      let options = {
+      const options = {
         args: ["window"],
       };
 

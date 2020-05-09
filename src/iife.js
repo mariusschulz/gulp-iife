@@ -1,6 +1,6 @@
-var SourceMapGenerator = require("source-map").SourceMapGenerator;
+const { SourceMapGenerator } = require("source-map");
 
-let defaultOptions = {
+const defaultOptions = {
   args: undefined,
   params: undefined,
   prependSemicolon: true,
@@ -10,19 +10,19 @@ let defaultOptions = {
 };
 
 function surround(code, userOptions, sourceMapOptions) {
-  let options = {
+  const options = {
     ...defaultOptions,
     ...userOptions,
   };
 
-  let useStrictLines = options.useStrict ? ['"use strict";', ""] : [];
+  const useStrictLines = options.useStrict ? ['"use strict";', ""] : [];
   const trimmedCode = options.trimCode ? code.trim() : code;
   const prependedSemicolon = options.prependSemicolon ? ";" : "";
   const bindThis = options.bindThis ? ".bind(this)" : "";
 
   const { args, params } = getArgsAndParams(options);
 
-  let lines = [
+  const lines = [
     `${prependedSemicolon}(function(${params}) {`,
     ...useStrictLines,
     trimmedCode,
@@ -30,7 +30,7 @@ function surround(code, userOptions, sourceMapOptions) {
     "",
   ];
 
-  let result = {
+  const result = {
     code: lines.join("\n"),
   };
 
@@ -53,9 +53,9 @@ function getArgsAndParams(options) {
 
 function generateSourceMap(originalCode, options, sourceMapOptions) {
   // We don't care about trailing lines for the mapping
-  let code = originalCode.trimRight();
+  const code = originalCode.trimRight();
 
-  let sourceMapGenerator = new SourceMapGenerator({
+  const sourceMapGenerator = new SourceMapGenerator({
     file: sourceMapOptions.fileName,
   });
 
@@ -67,14 +67,14 @@ function generateSourceMap(originalCode, options, sourceMapOptions) {
   linesOffset += options.useStrict ? 2 : 0;
 
   // Then we have negative lines for the leading empty lines that are trimmed
-  let leadingEmptyLines = ((code.match(/^\s+/) || [""])[0].match(/\n/g) || [])
+  const leadingEmptyLines = ((code.match(/^\s+/) || [""])[0].match(/\n/g) || [])
     .length;
   linesOffset -= options.trimCode ? leadingEmptyLines : 0;
 
   // We add sourcemaps only for the non-empty lines.
   // So, we start the loop in the first non-empty line.
   // (The trailing empty lines are already trimmed.)
-  let codeLines = (code.trimLeft().match(/\n/g) || []).length + 1;
+  const codeLines = (code.trimLeft().match(/\n/g) || []).length + 1;
 
   for (let i = 1 + leadingEmptyLines; i <= codeLines + leadingEmptyLines; i++) {
     sourceMapGenerator.addMapping({
