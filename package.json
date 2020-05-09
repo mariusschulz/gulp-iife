@@ -8,7 +8,7 @@
     "lib/"
   ],
   "scripts": {
-    "prepublish": "npm test && npm run build",
+    "prepublish": "yarn test && yarn build",
     "build": "cp -R ./src/ ./lib",
     "format": "prettier './*.js' 'src/**/*.js' 'test/**/*.js' --write",
     "test": "mocha test",
