@@ -1,16 +1,31 @@
 import { SourceMapGenerator } from "source-map";
 
-const defaultOptions = {
-  args: undefined,
-  params: undefined,
+type Options = {
+  args: string[] | null;
+  bindThis: boolean;
+  generateSourceMap: boolean;
+  params: string[] | null;
+  prependSemicolon: boolean;
+  useStrict: boolean;
+  trimCode: boolean;
+};
+
+const defaultOptions: Options = {
+  args: null,
+  bindThis: false,
+  generateSourceMap: true,
+  params: null,
   prependSemicolon: true,
   useStrict: true,
   trimCode: true,
-  generateSourceMap: true,
 };
 
-export function surround(code: any, userOptions: any, sourceMapOptions: any) {
-  const options = {
+export function surround(
+  code: string,
+  userOptions: Partial<Options>,
+  sourceMapOptions: any
+) {
+  const options: Options = {
     ...defaultOptions,
     ...userOptions,
   };
@@ -44,9 +59,9 @@ export function surround(code: any, userOptions: any, sourceMapOptions: any) {
   return result;
 }
 
-function getArgsAndParams(options: any) {
-  const params = options.params || options.args || [];
+function getArgsAndParams(options: Options) {
   const args = options.args || options.params || [];
+  const params = options.params || options.args || [];
 
   return {
     args: args.join(", "),
@@ -55,8 +70,8 @@ function getArgsAndParams(options: any) {
 }
 
 function generateSourceMap(
-  originalCode: any,
-  options: any,
+  originalCode: string,
+  options: Options,
   sourceMapOptions: any
 ) {
   // We don't care about trailing lines for the mapping
