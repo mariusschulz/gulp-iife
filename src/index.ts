@@ -1,8 +1,8 @@
-const through = require("through2");
-const applySourceMap = require("vinyl-sourcemaps-apply");
-const iife = require("./iife");
+import * as through from "through2";
+import * as applySourceMap from "vinyl-sourcemaps-apply";
+import * as iife from "./iife";
 
-module.exports = function gulpIife(userOptions) {
+module.exports = function gulpIife(userOptions: any) {
   return through.obj(function (file, encoding, callback) {
     const contents = String(file.contents);
     const sourceMapOptions = file.sourceMap
@@ -10,7 +10,7 @@ module.exports = function gulpIife(userOptions) {
       : null;
 
     const result = iife.surround(contents, userOptions, sourceMapOptions);
-    file.contents = Buffer(result.code);
+    file.contents = new Buffer(result.code);
 
     if (file.sourceMap) {
       applySourceMap(file, result.sourceMap);

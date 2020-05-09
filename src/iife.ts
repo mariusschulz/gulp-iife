@@ -1,4 +1,4 @@
-const { SourceMapGenerator } = require("source-map");
+import { SourceMapGenerator } from "source-map";
 
 const defaultOptions = {
   args: undefined,
@@ -9,7 +9,7 @@ const defaultOptions = {
   generateSourceMap: true,
 };
 
-function surround(code, userOptions, sourceMapOptions) {
+export function surround(code: any, userOptions: any, sourceMapOptions: any) {
   const options = {
     ...defaultOptions,
     ...userOptions,
@@ -30,7 +30,10 @@ function surround(code, userOptions, sourceMapOptions) {
     "",
   ];
 
-  const result = {
+  const result: {
+    code: string;
+    sourceMap?: any;
+  } = {
     code: lines.join("\n"),
   };
 
@@ -41,7 +44,7 @@ function surround(code, userOptions, sourceMapOptions) {
   return result;
 }
 
-function getArgsAndParams(options) {
+function getArgsAndParams(options: any) {
   const params = options.params || options.args || [];
   const args = options.args || options.params || [];
 
@@ -51,7 +54,11 @@ function getArgsAndParams(options) {
   };
 }
 
-function generateSourceMap(originalCode, options, sourceMapOptions) {
+function generateSourceMap(
+  originalCode: any,
+  options: any,
+  sourceMapOptions: any
+) {
   // We don't care about trailing lines for the mapping
   const code = originalCode.trimRight();
 
@@ -92,7 +99,3 @@ function generateSourceMap(originalCode, options, sourceMapOptions) {
 
   return sourceMapGenerator.toString();
 }
-
-module.exports = {
-  surround,
-};

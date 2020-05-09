@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "prepublish": "yarn test && yarn build",
-    "build": "cp -R ./src/ ./lib",
+    "build": "tsc -p .",
     "format": "prettier './*.js' 'src/**/*.js' 'test/**/*.js' --write",
     "test": "mocha test",
     "test-watch": "mocha test --watch"
@@ -42,8 +42,12 @@
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.13.5",
+    "@types/through2": "^2.0.34",
     "chai": "^4.2.0",
     "mocha": "^7.1.2",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3"
   }
 }
