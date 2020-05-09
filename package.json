@@ -10,6 +10,7 @@
   "scripts": {
     "prepublish": "yarn test && yarn build",
     "build": "tsc -p .",
+    "dev": "tsc -p . -w",
     "format": "prettier './*.js' 'src/**/*.js' 'test/**/*.js' --write",
     "test": "mocha test",
     "test-watch": "mocha test --watch"
