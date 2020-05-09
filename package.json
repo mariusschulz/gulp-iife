@@ -33,7 +33,7 @@
   "author": {
     "name": "Marius Schulz",
     "email": "marius.schulz@me.com",
-    "url": "https://blog.mariusschulz.com/"
+    "url": "https://mariusschulz.com/"
   },
   "homepage": "https://github.com/mariusschulz/gulp-iife",
   "dependencies": {
