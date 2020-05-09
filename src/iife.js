@@ -1,4 +1,3 @@
-var _ = require("lodash");
 var SourceMapGenerator = require("source-map").SourceMapGenerator;
 
 module.exports = {
@@ -15,7 +14,10 @@ let defaultOptions = {
 };
 
 function surround(code, userOptions, sourceMapOptions) {
-  let options = _.merge({}, defaultOptions, userOptions);
+  let options = {
+    ...defaultOptions,
+    ...userOptions,
+  };
 
   let useStrictLines = options.useStrict ? ['"use strict";', ""] : [];
   const trimmedCode = options.trimCode ? code.trim() : code;
